@@ -2,7 +2,7 @@ import speech_recognition as sr
 import os
 import sys
 import re
-import webbrowser
+import webbrowse
 import smtplib
 import requests
 import subprocess
