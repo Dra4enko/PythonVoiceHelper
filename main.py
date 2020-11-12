@@ -1,5 +1,8 @@
+import os
 import speech_recognition as sr
-import os, sys, webbrowser, pygame
+import sys
+import webbrowser
+import pygame
 from gtts import gTTS
 
 file = 'speech.mp3'
@@ -21,6 +24,7 @@ def talk(words):
 	tts(words)
 
 talk("Привет, чем я могу помочь вам?")
+
 def command():
 	r = sr.Recognizer()
 	with sr.Microphone() as source:
