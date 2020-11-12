@@ -1,4 +1,4 @@
-import speech_recognition as sr
+# import speech_recognition as sr
 import sys
 import webbrowser
 import pygame
@@ -31,6 +31,10 @@ talk("Привет, чем я могу помочь вам?")
 
 
 def command():
+    return 0
+
+
+def command():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Говорите")
@@ -45,17 +49,18 @@ def command():
         zadanie = command()
     return zadanie
 
-# def makesomething(zadanie):
-#     if 'открыть сайт' in zadanie:
-#         talk("Уже открываю")
-#         url = 'https://itproger.com'
-#         webbrowser.open(url)
-#     elif 'стоп' in zadanie:
-#         talk("Да, конечно, без проблем")
-#         sys.exit()
-#     elif 'имя' in zadanie:
-#         talk("Меня зовут Сири")
-#
-#
-# while True:
-#     makesomething(command())
+
+def makesomething(zadanie):
+    if 'открыть сайт' in zadanie:
+        talk("Уже открываю")
+        url = 'https://itproger.com'
+        webbrowser.open(url)
+    elif 'стоп' in zadanie:
+        talk("Да, конечно, без проблем")
+        sys.exit()
+    elif 'имя' in zadanie:
+        talk("Меня зовут Сири")
+
+
+while True:
+    makesomething(command())
