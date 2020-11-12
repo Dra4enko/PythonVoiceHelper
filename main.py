@@ -51,3 +51,6 @@ def makeSomething(zadanie):
 		talk("Меня зовут Сири")
 while True:
 	makeSomething(command())
+=======
+"кер"
+>>>>>>> 4fec890b6dd3723f5bb77b10f7e2d5d5fe93a8de
