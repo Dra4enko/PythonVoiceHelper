@@ -45,18 +45,17 @@ def command():
         zadanie = command()
     return zadanie
 
-
-def makesomething(zadanie):
-    if 'открыть сайт' in zadanie:
-        talk("Уже открываю")
-        url = 'https://itproger.com'
-        webbrowser.open(url)
-    elif 'стоп' in zadanie:
-        talk("Да, конечно, без проблем")
-        sys.exit()
-    elif 'имя' in zadanie:
-        talk("Меня зовут Сири")
-
-
-while True:
-    makesomething(command())
+# def makesomething(zadanie):
+#     if 'открыть сайт' in zadanie:
+#         talk("Уже открываю")
+#         url = 'https://itproger.com'
+#         webbrowser.open(url)
+#     elif 'стоп' in zadanie:
+#         talk("Да, конечно, без проблем")
+#         sys.exit()
+#     elif 'имя' in zadanie:
+#         talk("Меня зовут Сири")
+#
+#
+# while True:
+#     makesomething(command())
