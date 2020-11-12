@@ -1,3 +1,5 @@
+#ауе, басота
+
 #привет, кер
 
 import speech_recognition as sr
