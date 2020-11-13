@@ -4,30 +4,19 @@ import sys
 import webbrowser
 import pygame
 from gtts import gTTS
-import time
 
 file = 'speech.mp3'
-isFileOpen = False
 
 
-def play(bool_isopen):
+def play():
     pygame.mixer.init()
     pygame.mixer.music.load(file)
     pygame.mixer.music.play()
-
-    if not bool_isopen:
-        bool_isopen = True
-        file = 'speech1.mp3'
-    else:
-        bool_isopen = False
-        file = 'speech.mp3'
-    return bool_isopen
 
 
 def tts(words):
     pgtts = gTTS(text=words, lang='ru')
     pgtts.save(file)
-    isFileOpen = play()
 
 
 def talk(words):
