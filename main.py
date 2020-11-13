@@ -2,14 +2,40 @@ import speech_recognition as sr
 import os
 import sys
 import webbrowser
+import pygame
+from gtts import gTTS
+import time
+
+file = 'speech.mp3'
+isFileOpen = False
+
+
+def play(bool_isopen):
+    pygame.mixer.init()
+    pygame.mixer.music.load(file)
+    pygame.mixer.music.play()
+
+    if not bool_isopen:
+        bool_isopen = True
+        file = 'speech1.mp3'
+    else:
+        bool_isopen = False
+        file = 'speech.mp3'
+    return bool_isopen
+
+
+def tts(words):
+    pgtts = gTTS(text=words, lang='ru')
+    pgtts.save(file)
+    isFileOpen = play()
 
 
 def talk(words):
     print(words)
-    os.system("say " + words)
+    tts(words)
 
 
-talk("Привет, чем я могу помочь вам")
+talk("Привет, чем я могу помочь вам?")
 
 
 def command():
@@ -33,14 +59,13 @@ def command():
 
 def makeSomething(zadanie):
     if 'открыть сайт' in zadanie:
+        webbrowser.open('https://itproger.com')
         talk("Уже открываю")
-        url = 'https://itproger.com'
-        webbrowser.open(url)
     elif 'стоп' in zadanie:
-        talk("Да, конечно, без проблем")
+        # talk("Да, конечно, без проблем")
         sys.exit()
-    elif 'имя' in zadanie:
-        talk("Меня зовут Сири")
+    elif 'открой файл' in zadanie:
+        os.startfile(r'C:/Users/User/Desktop/img.png')  # в конечном каталоге этого пути должен быть файл 'img.png'
 
 
 while True:
