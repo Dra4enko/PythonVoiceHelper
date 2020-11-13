@@ -4,22 +4,18 @@ import sys
 import webbrowser
 import pygame
 from gtts import gTTS
+import pyttsx3
+from speech_recognition import Recognizer
 
 file = 'speech.mp3'
-isopen = False
 
 
 def play():
     pygame.mixer.init()
     pygame.mixer.music.load(file)
     pygame.mixer.music.play()
-
-    if not isopen:
-        isopen = True
-        file = 'speech1.mp3 '
-    else:
-        isopen = False
-        file = 'speech.mp3'
+    while pygame.mixer.music.get_busy():
+        pygame.mixer.music.get_pos() / 1000
 
 
 def tts(words):
@@ -29,8 +25,9 @@ def tts(words):
 
 
 def talk(words):
-    print(words)
-    tts(words)
+    engine = pyttsx3.init()
+    engine.say(words)
+    engine.runAndWait()
 
 
 talk("Привет, чем я могу помочь вам?")
@@ -41,6 +38,7 @@ def command():
 
     with sr.Microphone() as source:
         print("Говорите")
+        talk("Говорите")
         r.pause_threshold = 1
         r.adjust_for_ambient_noise(source, duration=1)
         audio = r.listen(source)
@@ -57,7 +55,9 @@ def command():
 
 def makeSomething(zadanie):
     if 'открыть сайт' in zadanie:
-        webbrowser.open('https://itproger.com')
+        if isopen in 'открыть сайт':
+            isopen = sr.Recognizer()
+        webbrowser.open(i)
         talk("Уже открываю")
     elif 'стоп' in zadanie:
         # talk("Да, конечно, без проблем")
