@@ -6,6 +6,7 @@ import pygame
 from gtts import gTTS
 
 file = 'speech.mp3'
+isopen = False
 
 
 def play():
@@ -13,10 +14,18 @@ def play():
     pygame.mixer.music.load(file)
     pygame.mixer.music.play()
 
+    if not isopen:
+        isopen = True
+        file = 'speech1.mp3 '
+    else:
+        isopen = False
+        file = 'speech.mp3'
+
 
 def tts(words):
     pgtts = gTTS(text=words, lang='ru')
     pgtts.save(file)
+    play()
 
 
 def talk(words):
