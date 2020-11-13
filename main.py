@@ -5,7 +5,10 @@ import webbrowser
 import pygame
 from gtts import gTTS
 import pyttsx3
+<<<<<<< HEAD
 from speech_recognition import Recognizer
+=======
+>>>>>>> e9cb97e666973865496ec9a52f3c5d95ee0b0d54
 
 file = 'speech.mp3'
 
@@ -38,31 +41,61 @@ def command():
 
     with sr.Microphone() as source:
         print("Говорите")
+<<<<<<< HEAD
         talk("Говорите")
+=======
+        talk("говорите")
+>>>>>>> e9cb97e666973865496ec9a52f3c5d95ee0b0d54
         r.pause_threshold = 1
         r.adjust_for_ambient_noise(source, duration=1)
         audio = r.listen(source)
 
     try:
-        zadanie = r.recognize_google(audio, language="ru-RU").lower()
-        print("Вы сказали: " + zadanie)
+        task = r.recognize_google(audio, language="ru-RU").lower()
     except sr.UnknownValueError:
         talk("Я вас не поняла")
-        zadanie = command()
+        task = command()
 
-    return zadanie
+    return task
 
 
+def listen_sitename():
+    r = sr.Recognizer()
+
+    with sr.Microphone() as source:
+        print("Название сайта")
+        talk("Название сайта")
+        r.pause_threshold = 1
+        r.adjust_for_ambient_noise(source, duration=1)
+        audio = r.listen(source)
+
+<<<<<<< HEAD
 def makeSomething(zadanie):
     if 'открыть сайт' in zadanie:
         if isopen in 'открыть сайт':
             isopen = sr.Recognizer()
         webbrowser.open(i)
+=======
+    try:
+        task = r.recognize_google(audio, language='ru-RU').lower()
+    except sr.UnknownValueError:
+        talk("Не поняла название сайта")
+        task = listen_sitename()
+
+    return task
+
+
+def makeSomething(task):
+    if 'открой сайт' or 'открыть сайт' in task:
+        webbrowser.open(listen_sitename())
+>>>>>>> e9cb97e666973865496ec9a52f3c5d95ee0b0d54
         talk("Уже открываю")
-    elif 'стоп' in zadanie:
+
+    elif 'стоп' in task:
         # talk("Да, конечно, без проблем")
         sys.exit()
-    elif 'открой файл' in zadanie:
+
+    elif 'открой файл' in task:
         os.startfile(r'C:/Users/User/Desktop/img.png')  # в конечном каталоге этого пути должен быть файл 'img.png'
 
 
