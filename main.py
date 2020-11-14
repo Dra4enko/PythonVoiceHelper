@@ -52,7 +52,7 @@ def command_sitename():
 def makeSomething(task):
     if 'открой сайт' or 'открыть сайт' in task:
         talk("Уже открываю")
-        webbrowser.get("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe")
+        # webbrowser.get("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe")
         webbrowser.open("http://" + command_sitename())
 
     elif 'стоп' in task:
