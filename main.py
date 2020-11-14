@@ -3,37 +3,16 @@ import os
 import sys
 import webbrowser
 import pygame
-from gtts import gTTS
 import pyttsx3
-<<<<<<< HEAD
-from speech_recognition import Recognizer
-=======
->>>>>>> e9cb97e666973865496ec9a52f3c5d95ee0b0d54
-
-file = 'speech.mp3'
-
-
-def play():
-    pygame.mixer.init()
-    pygame.mixer.music.load(file)
-    pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy():
-        pygame.mixer.music.get_pos() / 1000
-
-
-def tts(words):
-    pgtts = gTTS(text=words, lang='ru')
-    pgtts.save(file)
-    play()
-
 
 def talk(words):
     engine = pyttsx3.init()
+    voices = engine.getProperty('voices')
+    engine.setProperty('voice', voices[0].id)
     engine.say(words)
     engine.runAndWait()
 
-
-talk("Привет, чем я могу помочь вам?")
+talk("Привет")
 
 
 def command():
@@ -41,11 +20,6 @@ def command():
 
     with sr.Microphone() as source:
         print("Говорите")
-<<<<<<< HEAD
-        talk("Говорите")
-=======
-        talk("говорите")
->>>>>>> e9cb97e666973865496ec9a52f3c5d95ee0b0d54
         r.pause_threshold = 1
         r.adjust_for_ambient_noise(source, duration=1)
         audio = r.listen(source)
@@ -58,41 +32,30 @@ def command():
 
     return task
 
-
-def listen_sitename():
+def command_sitename():
     r = sr.Recognizer()
 
     with sr.Microphone() as source:
         print("Название сайта")
-        talk("Название сайта")
         r.pause_threshold = 1
-        r.adjust_for_ambient_noise(source, duration=1)
+        r.adjust_for_ambient_noise(source, duration=0.5)
         audio = r.listen(source)
 
-<<<<<<< HEAD
-def makeSomething(zadanie):
-    if 'открыть сайт' in zadanie:
-        if isopen in 'открыть сайт':
-            isopen = sr.Recognizer()
-        webbrowser.open(i)
-=======
     try:
-        task = r.recognize_google(audio, language='ru-RU').lower()
+        task = r.recognize_google(audio, language="ru-RU").lower()
     except sr.UnknownValueError:
-        talk("Не поняла название сайта")
-        task = listen_sitename()
+        talk("Я вас не поняла")
+        task = command_sitename()
 
     return task
 
-
 def makeSomething(task):
     if 'открой сайт' or 'открыть сайт' in task:
-        webbrowser.open(listen_sitename())
->>>>>>> e9cb97e666973865496ec9a52f3c5d95ee0b0d54
         talk("Уже открываю")
+        webbrowser.get("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe")
+        webbrowser.open("http://" + command_sitename())
 
     elif 'стоп' in task:
-        # talk("Да, конечно, без проблем")
         sys.exit()
 
     elif 'открой файл' in task:
