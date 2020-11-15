@@ -2,7 +2,6 @@ import speech_recognition as sr
 import os
 import sys
 import webbrowser
-import pygame
 import pyttsx3
 
 def talk(words):
@@ -32,35 +31,35 @@ def command():
 
     return task
 
+
 def command_sitename():
     r = sr.Recognizer()
 
     with sr.Microphone() as source:
-        print("Название сайта")
+        print("Введите название сайта: ")
         r.pause_threshold = 1
-        r.adjust_for_ambient_noise(source, duration=0.5)
+        r.adjust_for_ambient_noise(source, duration=1)
         audio = r.listen(source)
 
     try:
-        task = r.recognize_google(audio, language="ru-RU").lower()
+        task = r.recognize_google(audio, language="en-EN").lower()
     except sr.UnknownValueError:
-        talk("Я вас не поняла")
+        talk("Я вас не поняла.")
         task = command_sitename()
 
     return task
 
+
 def makeSomething(task):
-    if 'открой сайт' or 'открыть сайт' in task:
-        talk("Уже открываю")
-        # webbrowser.get("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe")
+    if task == 'открой сайт':
+        talk('Открываю сайт')
         webbrowser.open("http://" + command_sitename())
 
-    elif 'стоп' in task:
-        sys.exit()
-
-    elif 'открой файл' in task:
-        os.startfile(r'C:/Users/User/Desktop/img.png')  # в конечном каталоге этого пути должен быть файл 'img.png'
-
+    elif task == 'открой файл' or task == 'открой программу':
+        talk("Открываю файл")
+        talk("Введите путь до файла: ")
+        path = input()
+        os.startfile(path)
 
 while True:
     makeSomething(command())
