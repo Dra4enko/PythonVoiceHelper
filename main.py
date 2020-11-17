@@ -5,16 +5,12 @@ import webbrowser
 import pyttsx3
 
 
-
 def talk(words):
     engine = pyttsx3.init()
     voices = engine.getProperty('voices')
     engine.setProperty('voice', voices[0].id)
     engine.say(words)
     engine.runAndWait()
-
-
-talk("Привет")
 
 
 def command():
@@ -73,27 +69,6 @@ def makeSomething(task):
 
     elif task == 'открой дискорд':
         os.startfile(r"C:\Users\User\AppData\Local\Discord\Update.exe")
-
-    elif task == 'влево':
-        pag.press('left')
-
-    elif task == 'вправо':
-        pag.press('right')
-
-    elif task == 'вверх':
-        pag.press('up')
-
-    elif task == 'вниз':
-        pag.press('down')
-
-    elif task == 'принять':
-        pag.press('enter')
-
-    elif task == "табуляция":
-        pag.press('tab')
-
-    elif task == "текст":
-        pag.write(command_inputtext(), 0.15)
 
 
 def command_inputtext():
